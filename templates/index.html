@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy Buscador</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; }
+        .search-box { margin-bottom: 20px; }
+        .result { margin-bottom: 10px; padding: 10px; background: #fff; border-radius: 5px; }
+        .result a { color: #0077cc; text-decoration: none; }
+        .result a:hover { text-decoration: underline; }
+        .message { color: #c00; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Proxy Buscador</h1>
+    <form method="post" class="search-box">
+        <input type="text" name="q" value="{{ query }}" placeholder="¿Qué quieres buscar?" size="40" autofocus>
+        <button type="submit">Buscar</button>
+    </form>
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+    {% for result in results %}
+        <div class="result">
+            <a href="{{ result.url }}" target="_blank">{{ result.title }}</a>
+        </div>
+    {% endfor %}
+</body>
+</html>
